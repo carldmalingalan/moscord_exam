@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-if (process.env.NODE_ENV === "development") {
-  require("dotenv").config;
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
 mongoose
@@ -18,6 +18,8 @@ mongoose
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/seller", require("./routes/seller"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Connected to port ${process.env.PORT}`);
