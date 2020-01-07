@@ -15,6 +15,8 @@ code {
 .App {
   background-color: rgba(170, 170, 170, 0.178);
   padding: 0 40px;
+  height: auto;
+  overflow: auto;
 }
 
 .center-card {
@@ -26,12 +28,14 @@ code {
 
 .container {
   width: 100%;
+  margin: auto 0;
   transition: 0.3s;
 }
 
 .content-canvas {
   margin: 16px 16px;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 .main-canvas {
@@ -39,7 +43,7 @@ code {
   background: #fff;
   min-height: 50px;
   height: auto;
-  margin-bottom: 10px;
+  margin: 20px 10px;
 }
 
 .custom-btn {

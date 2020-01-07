@@ -6,7 +6,8 @@ import AddSeller from "./AddSeller";
 const { Content } = Layout;
 const { Title } = Typography;
 
-function Index() {
+function Index(props) {
+  const { path } = props.match;
   const [addBtn, setAddBtn] = useState(false);
   return (
     <>
@@ -39,7 +40,7 @@ function Index() {
               setAddBtn(prev => !prev);
             }}
           />
-          <SellerTable />
+          <SellerTable _basePath={path} />
         </div>
       </Content>
     </>

@@ -4,9 +4,18 @@ module.exports.validate = funcName => {
   switch (funcName) {
     case "createSeller":
       return [
-        body("username", "Username is required.").exists(),
-        body("fullname", "Fullname is required.").exists(),
-        body("address", "Address is required.").exists(),
+        body("username", "Username is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("fullname", "Fullname is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("address", "Address is required.")
+          .exists()
+          .not()
+          .isEmpty(),
         body("email", "Email is required.")
           .exists()
           .isEmail(),
@@ -18,6 +27,71 @@ module.exports.validate = funcName => {
           .matches(/[8]\d\d\d\-\d\d\d\d/)
       ];
     case "deleteSeller":
-      return [body("id", "ID is required.").exists()];
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty()
+      ];
+    case "createProduct":
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("name", "Product name is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("desc", "Description is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("totalIS", "Initial stock is required")
+          .exists()
+          .not()
+          .isEmpty()
+          .isNumeric()
+      ];
+    case "listProduct":
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty()
+      ];
+    case "deleteProduct":
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty()
+      ];
+    case "updateProduct":
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("name", "Product name is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("desc", "Description is required.")
+          .exists()
+          .not()
+          .isEmpty()
+      ];
+    case "addQtyProduct":
+      return [
+        body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("count", "Stock is required.")
+          .exists()
+          .not()
+          .isEmpty()
+      ];
   }
 };

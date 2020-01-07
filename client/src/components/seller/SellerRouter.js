@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Index from "./Index";
+import SellerForm from "./SellerForm";
 
 function SellerRouter(props) {
   const { path } = props.match;
@@ -12,9 +13,8 @@ function SellerRouter(props) {
         <div className="center-card">
           <div className="container">
             <Switch>
-              <Route path={`${path}`}>
-                <Index />
-              </Route>
+              <Route exact path={`${path}`} component={Index} />
+              <Route path={`${path}/:id`} component={SellerForm} />
             </Switch>
           </div>
         </div>

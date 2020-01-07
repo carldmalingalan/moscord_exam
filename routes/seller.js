@@ -3,8 +3,18 @@ const preValidate = require("../middlewares/preValidate");
 const {
   createSeller,
   listSeller,
-  deleteSeller
+  deleteSeller,
+  findSeller,
+  updateSeller
 } = require("../middlewares/sellersMW");
+
+EP.route("/find").post(
+  preValidate.validate("deleteSeller"),
+  findSeller,
+  (req, res) => {
+    // to be handled
+  }
+);
 
 EP.route("/create").post(
   preValidate.validate("createSeller"),
@@ -15,7 +25,15 @@ EP.route("/create").post(
   }
 );
 
-EP.route("/delete").delete(
+EP.route("/update").post(
+  preValidate.validate("createSeller"),
+  updateSeller,
+  (req, res) => {
+    // to be handled
+  }
+);
+
+EP.route("/delete").post(
   preValidate.validate("deleteSeller"),
   deleteSeller,
   (req, res) => {

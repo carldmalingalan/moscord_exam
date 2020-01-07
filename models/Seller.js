@@ -7,8 +7,8 @@ const SellerSchema = new Schema({
   fullname: { type: String, required: true },
   address: { type: String, required: true },
   contact: { type: Object, required: true, default: {} },
-  items: { type: Array, default: [] },
-  isDelete: { type: Boolean, default: false }
+  isDelete: { type: Boolean, default: false },
+  dateCreate: { type: Date, default: Date.now }
 });
 
 module.exports = Seller = mongoose.model("seller_info", SellerSchema);

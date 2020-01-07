@@ -21,7 +21,7 @@ export const sellerList = () => (dispatch, getState) => {
     .catch(resErr => {
       dispatch({
         type: "SELLER_LIST_ERROR",
-        payload: resErr.response.data.data || "Something went wrong"
+        payload: resErr.response.data || "Something went wrong"
       });
     });
 };
@@ -36,21 +36,53 @@ export const sellerCreate = sellerObj => (dispatch, getState) => {
       console.log(resErr.response);
       dispatch({
         type: "SELLER_CREATE_ERROR",
-        payload: resErr.response.data.data || "Something went wrong."
+        payload: resErr.response.data || "Something went wrong."
       });
     });
 };
 
 export const sellerDelete = sellerId => (dispatch, getState) => {
   axios
-    .delete("/seller/delete", JSON.stringify(sellerId), getConfig(getState))
+    .post("/seller/delete", JSON.stringify(sellerId), getConfig(getState))
     .then(resData => {
-      dispatch({ type: "SELLER_DELETE_SUCCESS", payload: resData.data.data });
+      dispatch({ type: "SELLER_DELETE_SUCCESS", payload: resData.data });
     })
     .catch(resErr => {
       dispatch({
         type: "SELLER_DELETE_ERROR",
-        payload: resErr.response.data.data || "Something went wrong."
+        payload: resErr.response.data || "Something went wrong."
+      });
+    });
+};
+
+export const sellerFind = sellerId => (dispatch, getState) => {
+  axios
+    .post("/seller/find", JSON.stringify(sellerId), getConfig(getState))
+    .then(resData => {
+      dispatch({ type: "SELLER_FIND_SUCCESS", payload: resData.data });
+    })
+    .catch(resErr => {
+      dispatch({
+        type: "SELLER_FIND_ERROR",
+        payload: resErr.response.data || "Something went wrong."
+      });
+    });
+};
+
+export const sellerUpdate = sellerObj => (dispatch, getState) => {
+  axios
+    .post("/seller/update", JSON.stringify(sellerObj), getConfig(getState))
+    .then(resData => {
+      dispatch({ type: "SELLER_UDPATE_SUCCESS", payload: resData.data });
+      dispatch({
+        type: "SELLER_UPDATE_CUSTOM_NOTIF",
+        payload: { status: "success", data: "Updated successfully." }
+      });
+    })
+    .catch(resErr => {
+      dispatch({
+        type: "SELLER_UPDATE_ERROR",
+        payload: resErr.response.data || "Something went wrong."
       });
     });
 };

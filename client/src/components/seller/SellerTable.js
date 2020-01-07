@@ -1,30 +1,61 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Table, Icon, Tooltip } from "antd";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { sellerList } from "../../actions/sellers";
-
-const columns = [
-  { title: "Username", dataIndex: "username", key: "username" },
-  { title: "Fullname", dataIndex: "fullname", key: "fullname" },
-  { title: "E-mail", dataIndex: "email", key: "email" },
-  { title: "Address", dataIndex: "address", key: "address" },
-  { title: "No. of Items", dataIndex: "countItems", key: "countItems" },
-  { title: "Action", dataIndex: "_id", key: "_id" }
-];
+import { sellerList, sellerDelete } from "../../actions/sellers";
 
 function SellerTable(props) {
-  const { sellerList, dataSource } = props;
+  const { sellerList, sellerDelete, dataSource, notif, _basePath } = props;
   const [sellerDS, setDataSource] = useState(dataSource || null);
+  const columns = [
+    { title: "Username", dataIndex: "username", key: "username" },
+    { title: "Fullname", dataIndex: "fullname", key: "fullname" },
+    { title: "E-mail", dataIndex: "email", key: "email" },
+    { title: "Address", dataIndex: "address", key: "address" },
+    { title: "No. of Items", dataIndex: "countItems", key: "countItems" },
+    {
+      title: "Action",
+      dataIndex: "_id",
+      key: "id",
+      render: val => (
+        <>
+          <span style={{ marginRight: "5px" }}>
+            <Tooltip key={val} placemen="top" title="Update seller">
+              <Link to={`${_basePath}/${val}`}>
+                <Icon
+                  type="edit"
+                  className="custom-btn"
+                  style={{ fontSize: "20px" }}
+                />
+              </Link>
+            </Tooltip>
+          </span>
+          <span>
+            <Tooltip key={val} placement="top" title="Delete seller">
+              <Icon
+                key={val}
+                type="close-circle"
+                className="custom-btn"
+                onClick={() => {
+                  sellerDelete({ id: val });
+                }}
+                style={{ fontSize: "20px" }}
+              />
+            </Tooltip>
+          </span>
+        </>
+      )
+    }
+  ];
 
   useEffect(() => {
     if (!dataSource) {
       sellerList();
     }
-  }, []);
+  }, [notif]);
 
   useEffect(() => {
-    console.log(dataSource);
     setDataSource(dataSource);
   }, [dataSource]);
 
@@ -36,7 +67,10 @@ function SellerTable(props) {
 }
 
 const mapStateToProps = state => ({
-  dataSource: state.seller.list
+  dataSource: state.seller.list,
+  notif: state.notif
 });
 
-export default connect(mapStateToProps, { sellerList })(SellerTable);
+export default connect(mapStateToProps, { sellerList, sellerDelete })(
+  SellerTable
+);
