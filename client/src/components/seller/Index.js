@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Layout, Typography, Icon, Tooltip, Row, Col } from "antd";
+import { Layout, Typography, Icon, Tooltip, Row, Col, Button } from "antd";
 import SellerTable from "./SellerTable";
 import AddSeller from "./AddSeller";
+import { Link } from "react-router-dom";
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -15,6 +16,11 @@ function Index(props) {
         <div className="main-canvas">
           <Row gutter={16}>
             <Col span={12}>
+              <Link to="/home" style={{ display: "inline-block" }}>
+                <Button icon="caret-left" type="primary">
+                  Go back
+                </Button>
+              </Link>
               <Title level={2}>Sellers</Title>
             </Col>
             <Col span={12}>
@@ -23,7 +29,7 @@ function Index(props) {
                   <Icon
                     type="plus-circle"
                     className="custom-btn"
-                    style={{ fontSize: 40 }}
+                    style={{ fontSize: 40, margin: "20px 15px 0 0" }}
                     onClick={() => {
                       setAddBtn(prev => !prev);
                     }}

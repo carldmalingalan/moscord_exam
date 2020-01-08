@@ -21,6 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/seller", require("./routes/seller"));
 app.use("/product", require("./routes/product"));
+app.use("/home", require("./routes/home"));
+app.use("/report", require("./routes/report"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Connected to port ${process.env.PORT}`);

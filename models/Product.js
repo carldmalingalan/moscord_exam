@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
   totalIS: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },
   seller: { type: Schema.Types.ObjectId, ref: "seller_info" },
-  isDelete: { typ: Boolean, default: false },
+  isDelete: { type: Boolean, default: false },
   picked: { type: Array, default: [] }
 });
 

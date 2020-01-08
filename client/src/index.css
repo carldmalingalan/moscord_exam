@@ -14,10 +14,15 @@ code {
 
 .App {
   background-color: rgba(170, 170, 170, 0.178);
+  background-repeat: repeat;
   padding: 0 40px;
   height: auto;
-  overflow: auto;
+  min-height: 100vh;
 }
+
+/* .App::-webkit-scrollbar {
+  display: none !important;
+} */
 
 .center-card {
   display: flex;

@@ -3,10 +3,14 @@ import authReducers from "./authReducers";
 import sellerReducers from "./sellerReducers";
 import notifReducers from "./notifReducers";
 import productReducers from "./productReducers";
+import itemReducers from "./itemReducers";
+import cartReducers from "./cartReducers";
 
 export default combineReducers({
   auth: authReducers,
   seller: sellerReducers,
   notif: notifReducers,
-  product: productReducers
+  product: productReducers,
+  item: itemReducers,
+  cart: cartReducers
 });

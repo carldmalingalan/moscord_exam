@@ -22,6 +22,10 @@ export default (state = initialState, action) => {
     case "PRODUCT_UPDATE_SUCCESS":
     case "PRODUCT_ADD_QTY_ERROR":
     case "PRODUCT_ADD_QTY_SUCCESS":
+    case "ITEMS_LIST_ERROR":
+    case "ADD_ITEM_CART_ERROR":
+    case "ADD_ITEM_CART_SUCCESS_NOTIF":
+    case "PROCEED_ITEM_CART_SUCCESS":
       return {
         ...state,
         ...action.payload

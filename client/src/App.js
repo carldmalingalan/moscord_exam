@@ -1,11 +1,17 @@
 import React from "react";
 import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import SellerRouter from "./components/seller/SellerRouter";
 
 import "antd/dist/antd.css";
 import StandardNotif from "./components/notif/StandardNotif";
+import HomeRouter from "./components/home/HomeRouter";
 function App() {
   return (
     <Provider store={store}>
@@ -13,7 +19,11 @@ function App() {
         <StandardNotif />
         <Router>
           <Switch>
-            <Route path="/seller" component={SellerRouter}></Route>
+            <Route path="/home" component={HomeRouter} />
+            <Route path="/seller" component={SellerRouter} />
+            <Route>
+              <Redirect to="/home" />
+            </Route>
           </Switch>
         </Router>
       </>

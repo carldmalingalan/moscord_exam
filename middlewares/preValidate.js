@@ -93,5 +93,16 @@ module.exports.validate = funcName => {
           .not()
           .isEmpty()
       ];
+    case "addToCart":
+      return [
+        (body("id", "ID is required.")
+          .exists()
+          .not()
+          .isEmpty(),
+        body("qty", "Quantity is required.")
+          .exists()
+          .not()
+          .isEmpty())
+      ];
   }
 };

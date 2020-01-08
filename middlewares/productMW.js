@@ -193,9 +193,15 @@ module.exports.createProduct = (req, res, next) => {
       return;
     }
 
-    let newProd = new Product({ name, desc, totalIS, seller: id });
+    let newProd = new Product({
+      name,
+      desc,
+      totalIS,
+      seller: id
+    });
 
     newProd.save(err => {
+      console.log(newProd);
       if (err) {
         res.status(400).json({
           status: "error",
