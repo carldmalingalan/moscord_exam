@@ -13,7 +13,6 @@ function SellerTable(props) {
     { title: "Fullname", dataIndex: "fullname", key: "fullname" },
     { title: "E-mail", dataIndex: "email", key: "email" },
     { title: "Address", dataIndex: "address", key: "address" },
-    { title: "No. of Items", dataIndex: "countItems", key: "countItems" },
     {
       title: "Action",
       dataIndex: "_id",

@@ -13,7 +13,14 @@ module.exports.listSeller = (req, res, next) => {
           as: "products"
         }
       },
-      { $addFields: { key: "$_id", countItems: { $size: "$products" } } },
+      {
+        $addFields: {
+          key: "$_id",
+          countItems: {
+            $size: "$products"
+          }
+        }
+      },
       {
         $project: {
           username: 1,
@@ -30,6 +37,7 @@ module.exports.listSeller = (req, res, next) => {
         next();
       })
       .catch(errData => {
+        console.log(errData);
         res
           .status(400)
           .json({ status: "error", data: "Something went wrong." });
