@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Drawer, Descriptions, Divider, Button, Spin, Typography } from "antd";
+import {
+  Drawer,
+  Descriptions,
+  Divider,
+  Button,
+  Spin,
+  Typography,
+  Icon
+} from "antd";
 import moment from "moment";
 import { proceedItem } from "../../actions/home";
 
@@ -36,11 +44,15 @@ function ShowAdded(props) {
       <Spin
         spinning={loading}
         tip="Proceeding to check out..."
-        indicator="loading"
+        indicator={<Icon type="loading" />}
       >
         {" "}
-        {!items.length ? <Title level={2}>Nothing to show...</Title> : null}
-        {items &&
+        {!items.length ? (
+          <Title key="title" level={2}>
+            Nothing to show...
+          </Title>
+        ) : null}
+        {items.length > 0 &&
           itemsIn.map(val => (
             <>
               <Descriptions key={val._id}>
@@ -59,7 +71,7 @@ function ShowAdded(props) {
             </>
           ))}
         {items.length ? (
-          <div className="btn-container">
+          <div key="btn" className="btn-container">
             <Button
               type="primary"
               onClick={() => {

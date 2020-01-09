@@ -201,7 +201,6 @@ module.exports.createProduct = (req, res, next) => {
     });
 
     newProd.save(err => {
-      console.log(newProd);
       if (err) {
         res.status(400).json({
           status: "error",

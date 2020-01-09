@@ -8,9 +8,7 @@ function ReportPerSeller(props) {
   const [dt, setDT] = useState(rps);
 
   useEffect(() => {
-    if (!dt.length) {
-      rpsReport();
-    }
+    rpsReport();
   }, []);
 
   useEffect(() => {

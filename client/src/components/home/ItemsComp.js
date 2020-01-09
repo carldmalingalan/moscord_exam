@@ -20,10 +20,8 @@ function ItemsComp(props) {
   }
 
   useEffect(() => {
-    if (!localList) {
-      getItemsList();
-    }
-  }, [localList]);
+    getItemsList();
+  }, []);
 
   useEffect(() => {
     setLL(theList);

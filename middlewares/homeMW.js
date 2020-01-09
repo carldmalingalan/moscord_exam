@@ -55,14 +55,23 @@ module.exports.filterProducts = (req, res, next) => {
       },
       { $match: { "seller.isDelete": false } },
       {
-        $project: { _id: 1, name: 1, desc: 1, totalIS: 1, "seller.username": 1 }
+        $project: {
+          _id: 1,
+          name: 1,
+          desc: 1,
+          totalIS: 1,
+          "seller.username": 1,
+          "seller.fullname": 1
+        }
       },
+      { $addFields: { key: "$_id" } },
       {
         $match: {
           $or: [
             { name: { $regex: new RegExp(`${queryStr}`, "i") } },
             { desc: { $regex: new RegExp(`${queryStr}`, "i") } },
-            { "seller.username": { $regex: new RegExp(`${queryStr}`, "i") } }
+            { "seller.username": { $regex: new RegExp(`${queryStr}`, "i") } },
+            { "seller.fullname": { $regex: new RegExp(`${queryStr}`, "i") } }
           ]
         }
       }

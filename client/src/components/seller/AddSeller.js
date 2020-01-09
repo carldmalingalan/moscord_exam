@@ -37,7 +37,10 @@ function AddSeller(props) {
         title="New user information"
         width={400}
         visible={drawerVisible}
-        onClose={setVisible}
+        onClose={() => {
+          resetFields();
+          setVisible(false);
+        }}
       >
         <Spin
           spinning={loading}

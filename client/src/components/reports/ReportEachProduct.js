@@ -8,9 +8,7 @@ function ReportEachProduct(props) {
   const [dt, setDT] = useState(rep);
 
   useEffect(() => {
-    if (!dt.length) {
-      repReport();
-    }
+    repReport();
   }, []);
 
   useEffect(() => {

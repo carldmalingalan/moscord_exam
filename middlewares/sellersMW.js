@@ -3,21 +3,37 @@ const { validationResult } = require("express-validator");
 
 module.exports.listSeller = (req, res, next) => {
   try {
-    Seller.find({ isDelete: false })
-      .select("-items")
-      .exec((err, data) => {
-        if (err) {
-          res
-            .status(400)
-            .json({ status: "error", data: "Something went wrong." });
-          return;
+    Seller.aggregate([
+      { $match: { isDelete: false } },
+      {
+        $lookup: {
+          from: "product_infos",
+          localField: "_id",
+          foreignField: "seller",
+          as: "products"
         }
-        const finalData = JSON.parse(
-          JSON.stringify(data)
-        ).map((val, index) => ({ ...val, key: index }));
-
-        res.status(200).json({ status: "success", data: finalData });
+      },
+      { $addFields: { key: "$_id", countItems: { $size: "$products" } } },
+      {
+        $project: {
+          username: 1,
+          email: 1,
+          fullname: 1,
+          address: 1,
+          key: 1,
+          countItems: 1
+        }
+      }
+    ])
+      .then(resData => {
+        res.status(200).json({ status: "success", data: resData });
         next();
+      })
+      .catch(errData => {
+        res
+          .status(400)
+          .json({ status: "error", data: "Something went wrong." });
+        return;
       });
   } catch (error) {
     console.log(error);
