@@ -4,9 +4,8 @@
   "description": "Moscord Coding Challenge",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js",
-    "client": "npm run start -prefix client",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NODE_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
