@@ -2,9 +2,10 @@
   "name": "moscord_exam",
   "version": "1.0.0",
   "description": "Moscord Coding Challenge",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "server": "nodemon app.js",
+    "start": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run start --prefix client\"",
     "heroku-postbuild": "NODE_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
