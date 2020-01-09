@@ -56,7 +56,7 @@ const pretty = listObj => JSON.stringify(listObj, null, 2);
 
 /**
  *
- * @param {Object} listObject - An array of objects
+ * @param {Object} listObject - An array of objects (This parameter is added to make the function reusable)
  * @param {String} gender  - Must be a string
  */
 const listByGender = (listObject = [], gender) => {
@@ -77,7 +77,7 @@ const listByGender = (listObject = [], gender) => {
 
 /**
  *
- * @param {Object} listObject - An array of objects
+ * @param {Object} listObject - An array of objects (This parameter is added to make the function reusable)
  */
 const groupByDeparment = (listObject = []) => {
   try {
@@ -100,5 +100,5 @@ const groupByDeparment = (listObject = []) => {
   }
 };
 
-// console.log(pretty(listByGender(people, "M"), null, 2));
-console.log(pretty(groupByDeparment(people), null, 2));
+console.log(pretty(listByGender(people, "F")));
+console.log(pretty(groupByDeparment(people)));

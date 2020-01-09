@@ -13,20 +13,4 @@ const calculateValidationNumber = input => {
   }
 };
 
-// const calculateValidationNumber = input => {
-//   if (!parseInt(input) || isNaN(parseInt(input))) {
-//     return false;
-//   }
-//   let total = sumOfList(input.toString().split(""));
-
-//   while (total >= 10) {
-//     total = sumOfList(total.toString().split(""));
-//   }
-//   return total;
-// };
-
-// console.time("time");
-// console.log(calculateValidationNumber(1234));
-// console.timeEnd("time");
-
 console.log(calculateValidationNumber(555));
