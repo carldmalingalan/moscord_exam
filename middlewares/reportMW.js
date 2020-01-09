@@ -15,10 +15,17 @@ module.exports.repEachProd = (req, res, next) => {
       },
       { $match: { "seller.isDelete": false } },
       {
-        $project: { _id: 1, name: 1, picked: { $size: "$picked" } }
+        $project: {
+          _id: 1,
+          name: 1,
+          picked: { $size: "$picked" }
+        }
       },
       {
         $sort: { picked: -1 }
+      },
+      {
+        $addFields: { key: "$_id" }
       }
     ])
       .then(resData => {
@@ -60,6 +67,7 @@ module.exports.rankPerSeller = (req, res, next) => {
               as: "prod",
               in: {
                 _id: "$$prod._id",
+                key: "$$prod._id",
                 name: "$$prod.name",
                 picked: { $size: "$$prod.picked" }
               }
@@ -76,7 +84,9 @@ module.exports.rankPerSeller = (req, res, next) => {
           fullname: { $first: "$fullname" },
           products: { $push: "$products" }
         }
-      }
+      },
+      { $addFields: { prodNo: { $size: "$products" }, key: "$_id" } },
+      { $sort: { prodNo: -1 } }
     ])
       .then(resData => {
         res.status(200).json({ status: "success", data: resData });

@@ -25,7 +25,7 @@ function CustomHeader(props) {
               Seller
             </Button>
           </NavLink>
-          <NavLink to="/seller" style={{ marginLeft: "5px" }}>
+          <NavLink to="/reports" style={{ marginLeft: "5px" }}>
             <Button type="danger" ghost>
               Reports
             </Button>

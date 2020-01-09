@@ -5,6 +5,7 @@ import notifReducers from "./notifReducers";
 import productReducers from "./productReducers";
 import itemReducers from "./itemReducers";
 import cartReducers from "./cartReducers";
+import reportReducers from "./reportReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -12,5 +13,6 @@ export default combineReducers({
   notif: notifReducers,
   product: productReducers,
   item: itemReducers,
-  cart: cartReducers
+  cart: cartReducers,
+  report: reportReducers
 });

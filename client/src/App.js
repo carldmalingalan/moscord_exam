@@ -12,6 +12,7 @@ import SellerRouter from "./components/seller/SellerRouter";
 import "antd/dist/antd.css";
 import StandardNotif from "./components/notif/StandardNotif";
 import HomeRouter from "./components/home/HomeRouter";
+import ReportRouter from "./components/reports/ReportRouter";
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +22,7 @@ function App() {
           <Switch>
             <Route path="/home" component={HomeRouter} />
             <Route path="/seller" component={SellerRouter} />
+            <Route path="/reports" component={ReportRouter} />
             <Route>
               <Redirect to="/home" />
             </Route>
